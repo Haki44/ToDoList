@@ -1,17 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { Entypo } from '@expo/vector-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 // import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer'
 
 const Task = (props) => {
-
+// console.log(props.data.check);
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
-        <View style={styles.square}></View>
-        <Text style={styles.itemText}>{props.text}</Text>
+        <TouchableOpacity style={styles.square} onPress={props.check}>
+          {props.data.check ? <Entypo name="check" size={24} color="black"/> : null}
+        </TouchableOpacity>
+        <Text style={styles.itemText}>{props.data.title}</Text>
       </View>
-      <Text style={styles.suppr}>x</Text>
+      <TouchableOpacity onPress={props.suppr}>
+        <Entypo name="cross" size={24} color="red" />
+      </TouchableOpacity>
     </View>
   )
 }
@@ -45,6 +51,9 @@ const styles = StyleSheet.create({
   suppr: {
     color: 'red',
   },
+  // check: {
+  //   display: 'none',
+  // },
   // circular: {
   //   width: 12,
   //   height: 12,
